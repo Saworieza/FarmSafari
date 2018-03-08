@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="container">
+  <!-- user details. change the last section with detail you need -->
+  <%= @product.user.username %> <%= @product.user.phone %>
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4"><%= @product.name %>
+        <small>
+          <%#= link_to 'Edit', edit_product_path(@product) %> 
+          <% if (user_signed_in? && (current_user.id == @product.user_id)) %>
+            <%= link_to "Edit", edit_product_path(@product), class: "btn btn-sm btn-default" %> | 
+            <%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-default" %> |
+          <% end %> 
+          <%= link_to 'Back', products_path, class: "btn btn-sm btn-default" %>
+        </small> 
+      </h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-md-8">
+          <%= image_tag @product.image.url(:medium), class: "img-fluid" %>
+          <!-- <img class="img-fluid" src="http://placehold.it/750x500" alt=""> -->
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="my-3">Product Description</h3>
+          <p><%= @product.description %></p>
+          <h3 class="my-3">Product Details</h3>
+          <ul>
+            <li>Quantity : <%= @product.quantity %></li>
+            <li>Price : Ksh <%= @product.price %></li>
+            <li>Category : <%= @product.category.name %></li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+      <!-- Related Products Row -->
+      <h3 class="my-4">Other Products</h3>
+
+      <div class="row">
+        <% @others.each do |product| %>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <%= link_to product do %>
+            <%= image_tag product.image.url(:medium), class: "img-fluid" %>
+            <!-- <img class="img-fluid" src="http://placehold.it/500x300" alt=""> -->
+          <% end %>
+        </div>
+        <% end %>
+        <!-- <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+        </div> -->
+
+      </div>
+      <!-- /.row -->
+
+</div>
+
+
+
